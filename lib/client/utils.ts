@@ -1,13 +1,13 @@
 function formatDate(date:Date){
     return ''+
-      date.getFullYear()+'nen'+
-      (date.getMonth()+1)+'gatu'+
-      date.getDate()+'niti'+
-      date.getHours()+'ji'+
-      date.getMinutes()+'hun'
+      date.getFullYear()+'年'+
+      (date.getMonth()+1)+'月'+
+      date.getDate()+'日'+
+      date.getHours()+'時'+
+      date.getMinutes()+'分'
 }
 
 
 export function message(start:Date,end:Date){
-    return formatDate(start) +'kara'+formatDate(end)
+    return formatDate(start) +'から'+formatDate(end)+'まで予定を登録します。よろしければ企業名を入力してください。'
 }
