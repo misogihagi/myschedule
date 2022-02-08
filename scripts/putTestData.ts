@@ -1,5 +1,6 @@
 import {client,q} from '../lib/db'
 import {ScheduleData} from '..'
+import putData from './putData'
 
 function getEnd(start:Date):Date{
   const date=new Date(start)
@@ -36,20 +37,7 @@ const documents:Array<ScheduleData>=((a,b)=>a.map((_,i)=>{
 )
 
 export default function putTestData(){
-  return client.query(
-    q.Map(
-      documents,
-      q.Lambda(
-        'date',
-        q.Create(
-          q.Collection('schedules'),
-          { data: q.Var('date')  },
-        )
-      ),
-    )
-  )
-  .then(()=>console.log('test data created'))
-  .catch((err) => console.error('Error: %s', err))
+  return putData(documents)
 }
 if(require.main === module) {
   putTestData()
