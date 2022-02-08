@@ -2,6 +2,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { createScheduleData } from '../../lib/db'
 import {CreateResponse,ErrorMessage} from '../..'
+import { Logtail } from '@logtail/node'
+
+const logtail = new Logtail(process.env.LOGTAIL_SOURCE_TOKEN as string);
 
 export default async function handler(
   req: NextApiRequest,
@@ -9,6 +12,7 @@ export default async function handler(
 ) {
   try{
     console.log(req.body)
+    logtail.log(req.body)
     const ret=JSON.parse(req.body)
     await createScheduleData({
       title:'meeting',
